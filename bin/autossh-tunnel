@@ -1,0 +1,7 @@
+#!/bin/bash
+#usage: autossh-tunnel <ssh-port> <ssh-host> <remote-host> <remote-port> <local-port>
+echo "autossh-tunnel util 0.0.1"
+echo ""
+echo "Will now connect via ssh-host $2:$1 to $3:$4 and then tunnel that through as local port $5 on your current machine"
+echo "You might need to provide authentication for your local sudo now."
+sudo autossh -M 0 -f -nNT -i ~/.ssh/id_rsa -L $5:$3:$4 $2 -p $1  -g -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes
