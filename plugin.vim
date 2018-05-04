@@ -58,3 +58,12 @@ Plug 'junegunn/vader.vim'
 
 " Git commit browser
 Plug 'junegunn/gv.vim'
+
+" async autocomplete framework"
+Plug 'Shougo/deoplete.nvim'
+
+" deoplete for javascript"
+Plug 'carlitux/deoplete-ternjs'
+
+" python completion"
+Plug 'seletskiy/vim-pythonx'

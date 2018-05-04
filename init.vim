@@ -19,8 +19,7 @@ call plug#end()
 "	~~ General Configurations ~~
 "
 
-" don't convert tabs to spaces
-set noexpandtab
+set expandtab
 
 " Set tabs to take two character spaces
 set tabstop=2
@@ -39,7 +38,7 @@ set relativenumber
 set number
 
 " Add a bar on the side which delimits 80 characters.
-set colorcolumn=80
+" set colorcolumn=80
 
 " 72 characters makes it easier to read git log output.
 autocmd Filetype gitcommit setl colorcolumn=72

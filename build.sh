@@ -18,6 +18,12 @@ apt-install tree curl
 # Going to need this a lot
 apt-install python-pip
 
+apt-install node.js
+
+apt-install npm
+
+npm install yarn -g
+
 pip install setuptools
 
 # See readme for how to get the clipboard working.
