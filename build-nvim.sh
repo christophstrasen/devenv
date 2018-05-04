@@ -61,9 +61,9 @@ sudo chown -R christoph:christoph "$HOME/.config/nvim"
 sudo chown -R christoph:christoph "$HOME/.local/share"
 
 # Cleanups
-# sudo apt-get purge software-properties-common haskell-platform -y
-# sudo apt-get autoremove -y
-# sudo apt-get clean
-# rm -rf /tmp/shellcheck
-# rm -rf ~/.cabal
-# sudo rm -rf /var/lib/apt/lists/*
+sudo apt-get purge software-properties-common haskell-platform -y
+sudo apt-get autoremove -y
+sudo apt-get clean
+rm -rf /tmp/shellcheck
+rm -rf ~/.cabal
+sudo rm -rf /var/lib/apt/lists/*
