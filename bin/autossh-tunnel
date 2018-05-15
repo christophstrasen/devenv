@@ -1,5 +1,5 @@
 #!/bin/bash
-#usage: autossh-tunnel <ssh-port> <ssh-host> <remote-host> <remote-port> <local-port>
+#usage: autossh-tunnel <ssh-host> <ssh-port> <remote-host> <remote-port> <local-port>
 echo "autossh-tunnel util 0.0.1"
 echo ""
 echo "Will now connect via ssh-host $1:$2 to $3:$4 and then tunnel that through as local port $5 on your current machine"
