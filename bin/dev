@@ -11,7 +11,6 @@ create-container() {
 		-u `id -u $USER` \
 		-v `readlink -f /var/run/docker.sock`:/var/run/docker.sock \
 		-v $HOME/repo:$h/repo \
-		-v /etc/localtime:/etc/localtime:ro \
 		-v $HOME/.gitconfig:$h/.gitconfig \
 		-v $HOME/.ssh/:$h/.ssh \
 		-v $HOME/.gnupg:$h/.gnupg \
