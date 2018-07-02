@@ -17,6 +17,7 @@ create-container() {
 		`-e DISPLAY=$DISPLAY` \
 		-e GH_PASS \
 		-e GH_USER \
+		--env SHELL=/bin/bash \
 		`-v /tmp/.X11-unix:/tmp/.X11-unix:ro` \
 		christophstrasen/$1:$2 \
 		tmux new
