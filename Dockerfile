@@ -1,9 +1,13 @@
 FROM ubuntu:bionic
+ARG UID=1000
+ARG GID=1000
+ARG UNAME=christoph
 
 RUN apt-get update && \
 	apt-get install sudo -y && \
-	adduser --disabled-password --gecos '' christoph && \
-	adduser christoph sudo && \
+	groupadd -g $GID $UNAME && \
+	useradd -m -u $UID -g $GID -s /bin/bash $UNAME  && \
+	usermod -aG sudo $UNAME && \
 	echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 	apt-get autoremove -y && \
 	apt-get clean && \
@@ -17,12 +21,13 @@ COPY build.sh /tmp/build.sh
 RUN bash /tmp/build.sh && \
 	rm /tmp/build.sh
 
+
 # For some reason, this environment variable isn't set by docker.
-ENV USER christoph
+ENV USER $UNAME
 
-ENV HOME /home/christoph
+ENV HOME /home/$UNAME
 
-WORKDIR /home/christoph
+WORKDIR /home/$UNAME
 
 COPY ./inputrc "$HOME/.inputrc"
 
@@ -61,6 +66,7 @@ RUN /tmp/build-nvim.sh && \
 # bashrc
 COPY ./build-bashrc.sh /tmp/build-bashrc.sh
 RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
+RUN npm install -g eslint
 
 USER christoph
 

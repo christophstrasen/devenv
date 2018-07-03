@@ -18,8 +18,8 @@ apt-install python3-setuptools
 # Fix the permissions from the copy...
 mkdir -p "$HOME/.config/nvim"
 mkdir -p "$HOME/.local/share" 
-sudo chown -R christoph:christoph "$HOME/.config/nvim"
-sudo chown -R christoph:christoph "$HOME/.local/share"
+sudo chown -R $USER "$HOME/.config/nvim"
+sudo chown -R $USER "$HOME/.local/share"
 
 # Install neovim
 #sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -38,8 +38,8 @@ pip3 install neovim --upgrade
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-sudo chown -R christoph:christoph "$HOME/.config/nvim"
-sudo chown -R christoph:christoph "$HOME/.local/share"
+sudo chown -R $USER "$HOME/.config/nvim"
+sudo chown -R $USER "$HOME/.local/share"
 
 # Install all plugins.
 nvim +PlugInstall +qall
@@ -57,8 +57,8 @@ apt-install exuberant-ctags
 
 nvim +UpdateRemotePlugin +qall
 
-sudo chown -R christoph:christoph "$HOME/.config/nvim"
-sudo chown -R christoph:christoph "$HOME/.local/share"
+sudo chown -R $USER "$HOME/.config/nvim"
+sudo chown -R $USER "$HOME/.local/share"
 
 # Cleanups
 sudo apt-get purge software-properties-common haskell-platform -y
