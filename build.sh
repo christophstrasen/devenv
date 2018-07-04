@@ -41,7 +41,7 @@ apt-get remove -y debsums
 
 # Add proper docker group to our user
 groupadd -g 999 docker
-usermod -aG docker christoph
+usermod -aG docker $USER
 
 #pip install docker-compose
 apt-install docker-compose

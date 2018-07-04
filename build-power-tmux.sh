@@ -33,7 +33,7 @@ sudo apt-get update
 
 # Fix file permissions from the copy
 sudo chown -R $USER "$HOME/.config"
-sudo chown $USER /home/christoph/.tmux.conf
+sudo chown $USER /home/$USER/.tmux.conf
 sudo chown $USER ~/.tmate.conf
 
 # Need to update package cache...

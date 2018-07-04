@@ -16,14 +16,12 @@ RUN apt-get update && \
 # Required for `clear` command to work, etc.
 ENV TERM screen-256color
 
+ENV USER $UNAME
+
 COPY build.sh /tmp/build.sh
 
 RUN bash /tmp/build.sh && \
 	rm /tmp/build.sh
-
-
-# For some reason, this environment variable isn't set by docker.
-ENV USER $UNAME
 
 ENV HOME /home/$UNAME
 
@@ -68,7 +66,7 @@ COPY ./build-bashrc.sh /tmp/build-bashrc.sh
 RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
 RUN npm install -g eslint
 
-USER christoph
+USER $UNAME
 
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
