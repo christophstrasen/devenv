@@ -1,0 +1,3 @@
+alias envbuild="(cd ~/repo/devenv/ && make build)"
+alias envstart="(cd ~/repo/devenv/ && make start)"
+alias envattach="(cd ~/repo/devenv/ && make attach)"

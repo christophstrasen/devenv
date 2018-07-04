@@ -3,6 +3,13 @@ curdir = $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 #bakes everything into the image
 build:
-	docker build --build-arg UID=$(id -u) --build-arg GID=$(id -g) -t christophstrasen/devenv .
+	./build_container.sh
 .PHONY: build
 
+start:
+	./bin/start_container_detached.sh
+.PHONY: start
+
+attach:
+	./bin/attach_container.sh
+.PHONY: attach
