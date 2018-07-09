@@ -66,6 +66,10 @@ COPY ./build-bashrc.sh /tmp/build-bashrc.sh
 RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
 RUN npm install -g eslint
 
+# docker dev
+RUN wget -q https://storage.googleapis.com/golang/getgo/installer_linux && chmod +x installer_linux && ./installer_linux && source ~/.bash_profile
+RUN nvim +GoInstallBinaries
+
 USER $UNAME
 
 ENV LC_ALL=en_US.UTF-8
