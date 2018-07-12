@@ -1,10 +1,10 @@
 FROM ubuntu:bionic
 ARG UID=1000
 ARG GID=1000
-ARG UNAME=christoph
+ARG UNAME=defaultuser
 
 RUN apt-get update && \
-	apt-get install sudo netcat -y && \
+	apt-get install sudo netcat wget -y && \
 	groupadd -g $GID $UNAME && \
 	useradd -m -u $UID -g $GID -s /bin/bash $UNAME  && \
 	usermod -aG sudo $UNAME && \
@@ -14,7 +14,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists
 
 # Required for `clear` command to work, etc.
-ENV TERM screen-256color
+ENV TERM xterm-256color
 
 ENV USER $UNAME
 
@@ -27,19 +27,19 @@ ENV HOME /home/$UNAME
 
 WORKDIR /home/$UNAME
 
+RUN sudo apt-get update && sudo apt-get install vim -y
+
 COPY ./inputrc "$HOME/.inputrc"
 
 RUN sudo chown "$USER":"$USER" "$HOME/.inputrc"
 
 #power-tmux
 
-ENV XDG_CONFIG_HOME "$HOME/.config"
+#ENV XDG_CONFIG_HOME "$HOME/.config"
 
 COPY ./powerline "$HOME/.config/powerline"
 
 COPY ./.tmux.conf "$HOME/.tmux.conf"
-
-COPY ./bashrc-additions.sh /tmp/bashrc-additions.sh
 
 COPY ./.tmate.conf "$HOME/.tmate.conf"
 
@@ -47,6 +47,8 @@ COPY ./build-power-tmux.sh /tmp/build-power-tmux.sh
 
 RUN bash /tmp/build-power-tmux.sh && \
 	sudo rm /tmp/build-power-tmux.sh
+
+COPY ./yank.sh "$HOME/yank.sh"
 
 # nvim
 
@@ -62,15 +64,23 @@ RUN /tmp/build-nvim.sh && \
 	sudo rm /tmp/build-nvim.sh
 
 # bashrc
-COPY ./build-bashrc.sh /tmp/build-bashrc.sh
-RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
-RUN npm install -g eslint
 
-# docker dev
-RUN wget -q https://storage.googleapis.com/golang/getgo/installer_linux && chmod +x installer_linux && ./installer_linux && source ~/.bash_profile
-RUN nvim +GoInstallBinaries
+COPY ./bashrc-additions.sh /tmp/bashrc-additions.sh
+COPY ./build-bashrc.sh /tmp/build-bashrc.sh
 
 USER $UNAME
+RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
+
+RUN sudo npm install -g eslint
+
+# golang
+RUN wget -q https://storage.googleapis.com/golang/getgo/installer_linux
+RUN chmod +x installer_linux
+SHELL ["/bin/bash", "-c"]
+ENV SHELL bash
+RUN ./installer_linux 
+RUN source ~/.bash_profile
+RUN nvim +GoInstallBinaries +qall
 
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8

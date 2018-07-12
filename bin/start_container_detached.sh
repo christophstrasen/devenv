@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-h=/home/christoph
-
 create-container() {
 	docker run -ti \
 		--net=host \
@@ -10,13 +8,14 @@ create-container() {
 		--detach-keys 'ctrl-q,ctrl-q' \
 		-u `id -u $USER` \
 		-v `readlink -f /var/run/docker.sock`:/var/run/docker.sock \
-		-v $HOME/repo:$h/repo \
-		-v $HOME/.gitconfig:$h/.gitconfig \
-		-v $HOME/.ssh/:$h/.ssh \
-		-v $HOME/.gnupg:$h/.gnupg \
+		-v $HOME/repo:/home/$USER/repo \
+		-v $HOME/.gitconfig:/home/$USER/.gitconfig \
+		-v $HOME/.ssh/:/home/$USER/.ssh \
+		-v $HOME/.gnupg:/home/$USER/.gnupg \
 		`-e DISPLAY=$DISPLAY` \
 		-e GH_PASS \
 		-e GH_USER \
+		-e TERM=xterm-256color \
 		--env SHELL=/bin/bash \
 		`-v /tmp/.X11-unix:/tmp/.X11-unix:ro` \
 		-d \
