@@ -37,6 +37,13 @@ set relativenumber
 " Make the line number show up in the gutter instead of just '0'.
 set number
 
+" switch to absolute line numbers in insdert mode and when not having a focus
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " Add a bar on the side which delimits 80 characters.
 " set colorcolumn=80
 

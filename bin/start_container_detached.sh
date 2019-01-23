@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-h=/home/christoph
-
 create-container() {
 	docker run -ti \
 		--net=host \
@@ -19,6 +17,7 @@ create-container() {
 		`-e DISPLAY=$DISPLAY` \
 		-e GH_PASS \
 		-e GH_USER \
+		-e TERM=xterm-256color \
 		--env SHELL=/bin/bash \
 		`-v /tmp/.X11-unix:/tmp/.X11-unix:ro` \
 		-d \
