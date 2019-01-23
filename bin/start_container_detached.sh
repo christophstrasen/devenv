@@ -14,6 +14,8 @@ create-container() {
 		-v $HOME/.gitconfig:$h/.gitconfig \
 		-v $HOME/.ssh/:$h/.ssh \
 		-v $HOME/.gnupg:$h/.gnupg \
+		-v $HOME/journals/:$h/journals/ \
+		-v $HOME/.jrnl_config:$h/.config/jrnl \
 		`-e DISPLAY=$DISPLAY` \
 		-e GH_PASS \
 		-e GH_USER \
