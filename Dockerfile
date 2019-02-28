@@ -69,12 +69,12 @@ COPY ./bashrc-additions.sh /tmp/bashrc-additions.sh
 COPY ./build-bashrc.sh /tmp/build-bashrc.sh
 RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
 RUN npm install -g eslint
-USER $UNAME
 
 RUN sudo npm install -g eslint
-
 RUN apt-get update
-RUN apt-get install sudo -y python3-dev python-dev python3-dbus python-dbus
+RUN apt-get install sudo -y python3-dev python-dev python3-dbus python-dbus gpg
+RUN chown "$USER":"$USER" "$HOME"/.* -R
+USER $UNAME
 RUN pip install jrnl[encrypted] PyCrypto secretstorage keyrings.alt
 
 # golang
