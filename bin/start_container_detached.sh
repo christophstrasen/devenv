@@ -8,12 +8,12 @@ create-container() {
 		--detach-keys 'ctrl-q,ctrl-q' \
 		-u `id -u $USER` \
 		-v `readlink -f /var/run/docker.sock`:/var/run/docker.sock \
-		-v $HOME/repo:$h/repo \
-		-v $HOME/.gitconfig:$h/.gitconfig \
-		-v $HOME/.ssh/:$h/.ssh \
-		-v $HOME/.gnupg:$h/.gnupg \
-		-v $HOME/journals/:$h/journals/ \
-		-v $HOME/.jrnl_config:$h/.config/jrnl \
+		-v $HOME/repo:$HOME/repo \
+		-v $HOME/.gitconfig:$HOME/.gitconfig \
+		-v $HOME/.ssh/:$HOME/.ssh \
+		-v $HOME/.gnupg:$HOME/.gnupg \
+		-v $HOME/journals/:$HOME/journals/ \
+		-v $HOME/.jrnl_config:$HOME/.config/jrnl \
 		`-e DISPLAY=$DISPLAY` \
 		-e GH_PASS \
 		-e GH_USER \
