@@ -67,3 +67,7 @@ Plug 'carlitux/deoplete-ternjs'
 
 " python completion"
 Plug 'seletskiy/vim-pythonx'
+
+" go vim plugin"
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } 
+
