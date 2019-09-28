@@ -67,6 +67,7 @@ RUN /tmp/build-nvim.sh && \
 
 COPY ./bashrc-additions.sh /tmp/bashrc-additions.sh
 COPY ./build-bashrc.sh /tmp/build-bashrc.sh
+RUN wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
 RUN /tmp/build-bashrc.sh && sudo rm /tmp/build-bashrc.sh
 RUN npm install -g eslint
 

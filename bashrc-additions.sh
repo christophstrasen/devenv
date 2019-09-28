@@ -32,3 +32,7 @@ adec() {
     #decrypt
     gpg -d $1
   }
+
+eval $(dircolors -b $HOME/.dircolors)
+
+. ~/.bashrc
