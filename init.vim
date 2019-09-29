@@ -82,3 +82,9 @@ nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+" background transparent
+hi Normal guibg=NONE ctermbg=NONE
+
+" use jj to exit insert mode
+inoremap jj <ESC>

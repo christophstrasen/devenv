@@ -4,7 +4,7 @@ ARG GID=1000
 ARG UNAME=defaultuser
 
 RUN apt-get update && \
-	apt-get install sudo netcat wget -y && \
+	apt-get install sudo netcat wget sshfs -y && \
 	groupadd -g $GID $UNAME && \
 	useradd -m -u $UID -g $GID -s /bin/bash $UNAME  && \
 	usermod -aG sudo $UNAME && \
